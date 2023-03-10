@@ -14,6 +14,7 @@ export default {
     failed: 'Failed',
     verify: 'Verify',
     unauthorizedTips: 'Unauthorized, please verify first.',
+    new: 'new chat',
   },
   chat: {
     placeholder: 'Ask me anything...(Shift + Enter = line break)',
@@ -34,6 +35,7 @@ export default {
     deleteMessageConfirm: 'Are you sure to delete this message?',
     deleteHistoryConfirm: 'Are you sure to clear this history?',
     clearHistoryConfirm: 'Are you sure to clear chat history?',
+    playing: 'Advanced Directives',
   },
   setting: {
     setting: 'Setting',

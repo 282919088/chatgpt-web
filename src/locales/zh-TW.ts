@@ -14,6 +14,7 @@ export default {
     failed: '操作失敗',
     verify: '驗證',
     unauthorizedTips: '未經授權，請先進行驗證。',
+    new: '創建新會話',
   },
   chat: {
     placeholder: '來說點什麼...（Shift + Enter = 換行）',
@@ -33,6 +34,7 @@ export default {
     deleteMessage: '刪除訊息',
     deleteMessageConfirm: '是否刪除此訊息?',
     deleteHistoryConfirm: '確定刪除此紀錄?',
+    playing: '進階指令',
   },
   setting: {
     setting: '設定',

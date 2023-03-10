@@ -14,6 +14,7 @@ export default {
     failed: '操作失败',
     verify: '验证',
     unauthorizedTips: '未经授权，请先进行验证。',
+    new: '创建新会话',
   },
   chat: {
     placeholder: '来说点什么吧...（Shift + Enter = 换行）',
