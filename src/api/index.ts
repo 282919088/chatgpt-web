@@ -3,7 +3,7 @@ import { post } from '@/utils/request'
 
 export function fetchChatAPI<T = any>(
   prompt: string,
-  options?: { conversationId?: string; parentMessageId?: string },
+  options?: { conversationId?: string; parentMessageId?: string; apiKey?: string },
   signal?: GenericAbortSignal,
 ) {
   return post<T>({

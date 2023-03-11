@@ -32,13 +32,14 @@ let api: ChatGPTAPI | ChatGPTUnofficialProxyAPI
 
   if (process.env.OPENAI_API_KEY) {
     const OPENAI_API_MODEL = process.env.OPENAI_API_MODEL
+    const OPENAI_API_TEMPERATURE = process.env.OPENAI_API_TEMPERATURE
     const model = (typeof OPENAI_API_MODEL === 'string' && OPENAI_API_MODEL.length > 0)
       ? OPENAI_API_MODEL
       : 'gpt-3.5-turbo'
-
+    const temperature = OPENAI_API_TEMPERATURE ? Number(OPENAI_API_TEMPERATURE) : 0.6
     const options: ChatGPTAPIOptions = {
       apiKey: process.env.OPENAI_API_KEY,
-      completionParams: { model },
+      completionParams: { model, temperature },
       debug: false,
     }
 
@@ -84,7 +85,7 @@ let api: ChatGPTAPI | ChatGPTUnofficialProxyAPI
 
 async function chatReplyProcess(
   message: string,
-  lastContext?: { conversationId?: string; parentMessageId?: string },
+  lastContext?: { conversationId?: string; parentMessageId?: string; apiKey?: string },
   process?: (chat: ChatMessage) => void,
 ) {
   if (!message)
