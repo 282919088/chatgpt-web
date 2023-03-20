@@ -1,4 +1,4 @@
-// import dataJson from '../../../assets/data.json'
+import dataJson from '../../../assets/datajson.json'
 import { ss } from '@/utils/storage'
 const LOCAL_NAME = 'promptStore'
 
@@ -10,8 +10,10 @@ export interface PromptStore {
 
 export function getLocalPromptList(): PromptStore {
   const promptStore: PromptStore | undefined = ss.get(LOCAL_NAME)
-  // if (promptStore === undefined || promptStore.promptList.length === 0)
-  //   setLocalPromptList({ promptList: dataJson })
+  if (promptStore === undefined || promptStore.promptList.length === 0) {
+    ss.set(LOCAL_NAME, { promptList: dataJson })
+    return ss.get(LOCAL_NAME)
+  }
   return promptStore ?? { promptList: [] }
 }
 

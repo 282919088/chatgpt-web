@@ -17,7 +17,7 @@ export default {
     new: '创建新会话',
   },
   chat: {
-    placeholder: '来说点什么吧...（Shift + Enter = 换行）',
+    placeholder: '来说点什么吧...（/ 触发高级指令，Shift + Enter = 换行）',
     placeholderMobile: '来说点什么...',
     copy: '复制',
     copied: '复制成功',

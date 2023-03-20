@@ -4,6 +4,7 @@ import { NButton, NButtonGroup, NCard, NDataTable, NDivider, NGi, NGrid, NIcon, 
 import PromptRecommend from '../../../assets/recommend.json'
 import { usePromptStore } from '@/store'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
+import { t } from '@/locales'
 interface Props {
   visible: boolean
 }
@@ -115,22 +116,41 @@ const clearPromptTemplate = () => {
 const importPromptTemplate = () => {
   try {
     const jsonData = JSON.parse(tempPromptValue.value)
+    let key = ''
+    let value = ''
+    // 可以扩展加入更多模板字典的key
+    if ('key' in jsonData[0]) {
+      key = 'key'
+      value = 'value'
+    }
+    else if ('act' in jsonData[0]) {
+      key = 'act'
+      value = 'prompt'
+    }
+    else {
+      // 不支持的字典的key防止导入 以免破坏prompt商店打开
+      message.warning('prompt key not supported.')
+      throw new Error('prompt key not supported.')
+    }
+
     for (const i of jsonData) {
+      if (!(key in i) || !(value in i))
+        throw new Error(t('store.importError'))
       let safe = true
       for (const j of promptList.value) {
-        if (j.key === i.key) {
+        if (j.key === i[key]) {
           message.warning(`因标题重复跳过:${i.key}`)
           safe = false
           break
         }
-        if (j.value === i.value) {
+        if (j.value === i[value]) {
           message.warning(`因内容重复跳过:${i.key}`)
           safe = false
           break
         }
       }
       if (safe)
-        promptList.value.unshift({ key: i.key, value: i.value } as never)
+        promptList.value.unshift({ key: i[key], value: i[value] } as never)
     }
     message.success('导入成功')
     changeShowModal('')
